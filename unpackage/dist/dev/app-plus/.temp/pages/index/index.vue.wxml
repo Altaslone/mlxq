@@ -1,0 +1,16 @@
+<template name="7266843c">
+  <view class="_view data-v-019ff4e6">
+    <view class="_view data-v-019ff4e6 content" wx:key="index" key="{{index}}" wx:for="{{data_list}}" wx:for-index="index" wx:for-item="item">
+      <view class="_view data-v-019ff4e6 top">
+        <text class="_text data-v-019ff4e6 isWriteOnDay">{{item.isWriteOnDay}}</text>
+        <text class="_text data-v-019ff4e6 datetime">{{item.datetime}}</text>
+      </view>
+      <view class="_view data-v-019ff4e6 middle" bindtap="handleProxy" data-eventid="{{'T5F-0-'+index}}" data-comkey="{{$k}}"> {{item.content}} </view>
+      <view class="_view data-v-019ff4e6 bottom">
+        <view class="_view data-v-019ff4e6 dayHistory" bindtap="handleProxy" data-eventid="{{'3a5-1-'+index}}" data-comkey="{{$k}}"> {{item.dayHistory}} </view>
+        <view class="_view data-v-019ff4e6 version" bindtap="handleProxy" data-eventid="{{'itC-2-'+index}}" data-comkey="{{$k}}"> Ver.{{item.version}} </view>
+      </view>
+    </view>
+    <image class="_image data-v-019ff4e6 write_png" src="../../static/write.png" mode></image>
+  </view>
+</template>

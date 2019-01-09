@@ -1,0 +1,15 @@
+<template name="3dd0b6a4">
+  <view class="_view data-v-7a036be8">
+    <view class="_view data-v-7a036be8 content">
+      <view class="_view data-v-7a036be8 top">
+        <text class="_text data-v-7a036be8 isWriteOnDay">{{data.isWriteOnDay}}</text>
+        <text class="_text data-v-7a036be8 datetime">{{data.datetime}}</text>
+      </view>
+      <view class="_view data-v-7a036be8 middle" bindtap="handleProxy" data-eventid="{{'543-0'}}" data-comkey="{{$k}}"> {{data.content}} </view>
+      <view class="_view data-v-7a036be8 bottom">
+        <view class="_view data-v-7a036be8 dayHistory" bindtap="handleProxy" data-eventid="{{'xNu-1'}}" data-comkey="{{$k}}"> {{data.dayHistory}} </view>
+        <view class="_view data-v-7a036be8 version" bindtap="handleProxy" data-eventid="{{'BHH-2'}}" data-comkey="{{$k}}"> Ver.{{data.version}} </view>
+      </view>
+    </view>
+  </view>
+</template>

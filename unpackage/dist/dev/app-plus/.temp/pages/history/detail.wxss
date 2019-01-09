@@ -1,0 +1,9 @@
+
+page {
+  background-color: #F0F0F0;
+}
+.content {
+  margin: 10rpx;
+  background-color: #FFFFFF;
+  border-radius: 15rpx;
+}

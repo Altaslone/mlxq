@@ -1,0 +1,23 @@
+
+page {
+  background-color: #F0F0F0;
+}
+.content {
+  margin: 10rpx 15rpx 0rpx 15rpx;
+  background-color: #FFFFFF;
+  border-bottom-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+}
+.top {
+  font-size: 22rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  padding-right: 5rpx;
+}
+.middle {
+  padding: 5rpx;
+}
