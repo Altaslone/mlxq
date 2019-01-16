@@ -36,6 +36,15 @@
 					"scrollIndicator": "none"
 				}
 			}
+		},
+		{
+			"path": "pages/history/write",
+			"style": {
+				"app-plus": {
+					"bounce": "none",
+					"scrollIndicator": "none"
+				}
+			}
 		}
 	],
 	"globalStyle": {

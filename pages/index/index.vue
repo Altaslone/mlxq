@@ -4,8 +4,8 @@
 		<view class="content" v-for="(item,index) in data_list" :key="index">
 
 			<view class="top">
-				<text class="isWriteOnDay">{{item.isWriteOnDay}}</text>
-				<text class="datetime">{{item.datetime}}</text>
+				<text class="isWriteOnDay">{{is_day[item.is_day]}}</text>
+				<text class="datetime">{{item.ctime}}</text>
 			</view>
 
 			<view class="middle" @click="detailClick(item.id,item.content)">
@@ -14,7 +14,7 @@
 
 			<view class="bottom">
 				<view class="dayHistory" @click="shuttleClick(item.id,item.date)">
-					{{item.dayHistory}}
+					{{has_lyt[item.has_lyt]}}
 				</view>
 				<view class="version" @click="versionClick(item.id,item.version)">
 					Ver.{{item.version}}
@@ -23,7 +23,11 @@
 
 		</view>
 
-		<image class="write_png" src="../../static/write.png" mode=""></image>
+		<image @click="writeClick()" class="write_png" src="../../static/write.png" mode=""></image>
+
+		<view v-if="nothing" class="nothing">
+			Nothing
+		</view>
 
 	</view>
 </template>
@@ -32,65 +36,71 @@
 	export default {
 		data() {
 			return {
-				data_list: null
+				data_list: null,
+				nothing: true,
+				is_day: [' ', '_'],
+				has_lyt: ['History', '_History']
 			}
 		},
 		onLoad() {
-			this.data_list = [{
-					'id': 1,
-					'date': '2019-01-09',
-					'datetime': '2019-01-09 20:22:00',
-					'isWriteOnDay': '_',
-					'content': '这是一段文字内容',
-					'dayHistory': 'History',
-					'version': 1
+			uni.showLoading({
+				title: '请求中...'
+			});
+
+			uni.request({
+				url: 'https://caiji.dahang.xyz?s=M.home_list',
+				method: 'GET',
+				data: {
+					'time': '2019-01-16 11:31:00'
 				},
-				{
-					'id': 2,
-					'date': '2019-01-10',
-					'datetime': '2019-01-10 20:22:02',
-					'isWriteOnDay': '',
-					'content': 'this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text ccc测测试 this is a new paragraph of text',
-					'dayHistory': '',
-					'version': 3
+				success: res => {
+					uni.hideLoading();
+
+					console.log(JSON.stringify(res.data));
+
+					let rd = res.data;
+					if (rd.ret == 200) {
+						if (rd.data.length) {
+							this.data_list = rd.data;
+							this.nothing = false;
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '暂无数据',
+								duration: 1500
+							});
+						}
+					} else {
+						uni.showModal({
+							title: '异常',
+							content: rd.msg,
+							showCancel: false,
+							confirmText: '上报',
+							success: function(res) {
+								if (res.confirm) {
+									console.log(rd.msg);
+								}
+							}
+						});
+					}
 				},
-				{
-					'id': 3,
-					'date': '2019-01-10',
-					'datetime': '2019-01-10 20:22:02',
-					'isWriteOnDay': '',
-					'content': 'this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text zzzz这这是ccc测测试nnnn内内容',
-					'dayHistory': 'History',
-					'version': 0
+				fail: () => {
+					uni.hideLoading();
+
+					uni.showToast({
+						icon: 'none',
+						title: '请求异常!',
+						mask: false,
+						duration: 1500
+					});
 				},
-				{
-					'id': 4,
-					'date': '2019-01-10',
-					'datetime': '2019-01-10 20:22:02',
-					'isWriteOnDay': '_',
-					'content': 'this is a new paragraph of text',
-					'dayHistory': '',
-					'version': 3
-				},
-				{
-					'id': 5,
-					'date': '2019-01-10',
-					'datetime': '2019-01-10 20:22:02',
-					'isWriteOnDay': '',
-					'content': 'this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text',
-					'dayHistory': '',
-					'version': 3
-				},
-				{
-					'id': 6,
-					'date': '2019-01-10',
-					'datetime': '2019-01-10 20:22:02',
-					'isWriteOnDay': '',
-					'content': 'this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text this is a new paragraph of text',
-					'dayHistory': '',
-					'version': 3
+				complete: () => {
+					uni.hideLoading();
 				}
-			];
+			});
+		},
+		onShow() {
+
 		},
 		methods: {
 			shuttleClick(id, date) {
@@ -110,6 +120,11 @@
 						url: '/pages/history/edit?id=' + id
 					});
 				}
+			},
+			writeClick() {
+				uni.navigateTo({
+					url: '/pages/history/write'
+				});
 			}
 		}
 	}
@@ -172,5 +187,12 @@
 		border-radius: 50upx;
 
 		opacity: 0.8;
+	}
+
+	.nothing {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 60%;
 	}
 </style>

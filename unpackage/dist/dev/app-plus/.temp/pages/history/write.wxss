@@ -1,0 +1,55 @@
+
+page {
+  background-color: #F0F0F0;
+}
+.middle {
+  padding: 15rpx;
+}
+.my_textarea {
+  background-color: #FFFFFF;
+  min-height: 450rpx;
+  width: 100%;
+  border: 1rpx solid #F0F0F0;
+  font-size: 26rpx;
+}
+.pclass {
+  font-size: 20rpx;
+}
+.title {
+  font-size: 26rpx;
+  color: #303030;
+}
+.date {
+  border-bottom: 1rpx solid #D0D0D0;
+  margin-left: 10rpx;
+  width: 180rpx;
+  text-align: center;
+  color: #780000;
+}
+.bottom {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.bottom_left {
+  font-size: 26rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  margin-left: 15rpx;
+}
+.btn_img {
+  position: absolute;
+  right: 15rpx;
+  width: 60rpx;
+  height: 40rpx;
+}
